@@ -61,6 +61,10 @@ def main():
                 print(g)
             groupId = int(input("What's the id of the group you want to modify: "))
             groupIndex = findGroupById(groups,groupId)
+            if groupIndex == -1:
+                option = 0
+                print("This is not a valid group Id");
+                continue
             action = input("ADD or REMOVE: ")
 
             while True:
@@ -72,18 +76,19 @@ def main():
                     if personId == -1:
                         break
                     personIndex = findPersonById(people, personId)
-                    groups[groupIndex].addPerson(personIndex)
-                    people[personIndex].addGroup(groups[groupIndex].id)
+                    groups[groupIndex].addPerson(people[personIndex])
 
                 elif action == "REMOVE":
-                    for person in groups[groupIndex].peopleList:
-                        print(person)
-                    personId = personId = int(input("What's the id of the person you want to REMOVE or enter -1 to stop adding: "))
-                    if personId == -1:
+                    for i in range(0,len(groups[groupIndex].peopleList)):
+                        print(i+1," ",groups[groupIndex].peopleList[i].getFullName())
+                    personIndex = int(input("Which of the person you want to REMOVE or enter -1 to stop removing: "))
+                    if personIndex == -1:
                         break
-                    personIndex = findPersonById(people, personId)
-                    if personIndex != -1 and groups[groupIndex].removePerson(personId):
-                        people[personIndex].removeGroup()
+
+                    if personIndex != -1:
+                        groups[groupIndex].peopleList[personIndex-1].removeGroup()
+                        groups[groupIndex].removePerson(personIndex-1)
+
                 else:
                     print("IDK what you talking about")
                     break
@@ -98,7 +103,11 @@ def main():
                 g.print()
         else:
             print("No such option, please select again")
-        option = int(input("Please Enter an option: "))
+        try:
+            option = int(input("Please Enter an option: "))
+        except ValueError:
+            print("Not an option...")
+            option = 0
 
 main()
 

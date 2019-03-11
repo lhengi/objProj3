@@ -44,12 +44,12 @@ class Person(object):
     def validate(self,keys=None):
         if keys is None or len(keys) == 0:
             if self.attribute["groupNum"] is None:
-                print("Person ", self.attribute["id"], " Doesn't have a group")
+                print(self.attribute["firstName"]," ",self.attribute["lastName"], " Doesn't have a group")
             return
 
         for key in keys:
             if not key in keys or self.attribute[key] is None:
-                print("Person ", self.attribute["id"]," Doesn't have a ",key)
+                print(self.attribute["firstName"]," ",self.attribute["lastName"]," Doesn't have a ",key)
 
     def isInGroup(self):
         return self.attribute["groupNum"] is not None
@@ -62,6 +62,9 @@ class Person(object):
 
     def removeGroup(self):
         self.attribute["groupNum"] = None
+
+    def getFullName(self):
+        return self.attribute["firstName"]+" "+self.attribute["lastName"]
 
     def __str__(self):
         return str(self.attribute["id"]) + " " + self.attribute["firstName"] + " " + self.attribute["lastName"]

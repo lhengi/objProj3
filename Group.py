@@ -13,14 +13,8 @@ class Group(object):
         person.addGroup(self.id)
         self.peopleList.append(person)
 
-    def removePerson(self,personId):
-        index = -1
-        for i in range(0,self.peopleList):
-            if personId == self.peopleList[i].attribute["id"]:
-                index = i
-                break
-        if index == -1:
-            print("can't find Person ",personId)
+    def removePerson(self,index):
+        if index < 0 or index >= len(self.peopleList):
             return False
         self.peopleList.pop(index)
         return True
@@ -28,6 +22,12 @@ class Group(object):
 
 
     def validate(self,keys):
+        print()
+        if len(self.peopleList) < 3:
+            print("Group ",self.id," Has ",len(self.peopleList),"People, Less than three people")
+        elif len(self.peopleList) > 5:
+            print("Group ", self.id, " Has ", len(self.peopleList), "People, More than five people")
+
         for person in self.peopleList:
             person.validate(keys)
 
