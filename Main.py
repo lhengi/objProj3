@@ -1,3 +1,8 @@
+"""
+Author: Heng Li
+
+"""
+
 from Person import Person
 from Group import Group
 

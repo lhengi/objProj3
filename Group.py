@@ -1,4 +1,7 @@
+"""
+Author: Heng Li
 
+"""
 class Group(object):
     numGroup = 0
 

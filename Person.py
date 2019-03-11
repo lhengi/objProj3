@@ -1,4 +1,8 @@
+
 """
+Author: Heng Li
+
+
 Create a Person class in a file named Person.py.
 The person class should contain a class variable storing the
 number of person objects that have been created so far to provide a default value for id in the constructor.
